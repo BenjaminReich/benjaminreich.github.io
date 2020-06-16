@@ -1,0 +1,14 @@
+{
+  "name": "Ben Test PWA",
+  "short_name": "Ben Test PWA",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color":"#ffffff",
+  "icons": [
+    {
+      "src": "icon.jpg",
+      "sizes": "240x240",
+      "type": "image/jpg"
+    }]
+}

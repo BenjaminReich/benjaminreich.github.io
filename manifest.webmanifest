@@ -1,14 +1,24 @@
 {
   "name": "Ben Test PWA",
   "short_name": "Ben Test PWA",
-  "start_url": "/",
+  "start_url": "https://benjaminreich.github.io/",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color":"#ffffff",
+  "background_color": "#ffffff",
   "icons": [
-    {
-      "src": "icon.jpg",
-      "sizes": "240x240",
-      "type": "image/jpg"
-    }]
+      {
+          "src": "/images/icon.jpg",
+          "sizes": "240x240",
+          "type": "image/jpg"
+      },
+      {
+          "src": "/images/icon-144.png",
+          "sizes": "144x144",
+          "type": "image/png"
+      }
+  ],
+  "url": "https://benjaminreich.github.io/",
+  "lang": "",
+  "screenshots": [],
+  "orientation": "portrait"
 }

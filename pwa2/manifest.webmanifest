@@ -1,6 +1,6 @@
 {
-  "name": "Ben Test PWA",
-  "short_name": "Ben Test PWA",
+  "name": "Ben Test PWA 2",
+  "short_name": "Ben Test PWA 2",
   "start_url": "https://benjaminreich.github.io/pwa2",
   "display": "standalone",
   "theme_color": "#ffffff",

@@ -15,9 +15,13 @@ for i in $(seq $START $END); do
   convert icon-144_original.png -background none -pointsize 100 -gravity Center -fill white -annotate 0 "$i" icon-144.png
   convert icon_original.jpg -background none -pointsize 250 -gravity Center -fill white -annotate 0 "$i" icon.jpg
 
+  sed '1s/^/var CACHE_NAME = "pwa1";\n/' "$PWA_DIR/worker.js" > "$PWA_DIR/worker2.js"
+  rm "$PWA_DIR/worker.js"
+  mv "$PWA_DIR/worker2.js" "$PWA_DIR/worker.js"
+
   echo """{
-  \"name\": \"Ben Test PWA\",
-  \"short_name\": \"Ben Test PWA\",
+  \"name\": \"Ben Test PWA ${i}\",
+  \"short_name\": \"Ben Test PWA ${i}\",
   \"start_url\": \"https://benjaminreich.github.io/pwa${i}\",
   \"display\": \"standalone\",
   \"theme_color\": \"#ffffff\",

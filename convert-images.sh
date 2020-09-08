@@ -4,7 +4,7 @@ CURRENT_DIR=$(pwd)
 ORIGINAL_DIR="$CURRENT_DIR/pwa1"
 
 START=2
-END=2
+END=50
 for i in $(seq $START $END); do
   PWA_DIR="$CURRENT_DIR/pwa$i"
   mkdir "$PWA_DIR"

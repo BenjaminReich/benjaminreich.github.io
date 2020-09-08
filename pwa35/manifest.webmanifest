@@ -1,0 +1,30 @@
+{
+  "name": "Ben Test PWA 35",
+  "short_name": "Ben Test PWA 35",
+  "start_url": "https://benjaminreich.github.io/pwa35/",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+      {
+          "src": "icon.jpg",
+          "sizes": "240x240",
+          "type": "image/jpg"
+      },
+      {
+          "src": "icon-144.png",
+          "sizes": "144x144",
+          "type": "image/png"
+      },
+      {
+        "src": "icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+  ],
+  "url": "https://benjaminreich.github.io/pwa35/",
+  "lang": "",
+  "scope": "/pwa35/",
+  "screenshots": [],
+  "orientation": "portrait"
+}

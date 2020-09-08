@@ -1,4 +1,4 @@
-var CACHE_NAME = "pwa1";
+var CACHE_NAME = "pwa2";
 var urlsToCache = [
   `/${CACHE_NAME}/`,
   `/${CACHE_NAME}/index.html`,

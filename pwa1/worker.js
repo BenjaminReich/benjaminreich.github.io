@@ -1,3 +1,4 @@
+var CACHE_NAME = "pwa1";
 var urlsToCache = [
   `/${CACHE_NAME}/`,
   `/${CACHE_NAME}/index.html`,

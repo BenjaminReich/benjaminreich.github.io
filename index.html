@@ -47,7 +47,7 @@
       }
 
       if (!!window.SharedWorker) {
-        var worker = new SharedWorkers('https://supp.dog/shared.js');
+        var worker = new SharedWorker('https://supp.dog/shared.js');
 
         work.port.onmessage = function(e) {
           console.log(e);

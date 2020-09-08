@@ -15,7 +15,7 @@ for i in $(seq $START $END); do
   convert icon-144_original.png -background none -pointsize 100 -gravity Center -fill white -annotate 0 "$i" icon-144.png
   convert icon_original.jpg -background none -pointsize 250 -gravity Center -fill white -annotate 0 "$i" icon.jpg
 
-  sed '1s/^/var CACHE_NAME = "pwa1";\n/' "$PWA_DIR/worker.js" > "$PWA_DIR/worker2.js"
+  sed '1s/^/var CACHE_NAME = "pwa$i";\n/' "$PWA_DIR/worker.js" > "$PWA_DIR/worker2.js"
   rm "$PWA_DIR/worker.js"
   mv "$PWA_DIR/worker2.js" "$PWA_DIR/worker.js"
 

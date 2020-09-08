@@ -28,9 +28,9 @@
   </head>
   <body>
     <div class="vertical-alignment" id="container">
-      <h1 >Hello World</h1>
-      <button type="button" onclick="notifyMe()">Send Notification</button>
-      <button type="button" onclick="sendNotification()">Send Notification</button>
+      <p>Enter a comma separated list of the PWA numbers you wish to notify (i.e. 2,5,6,7)</p>
+      <button type="button" onclick="sendNotification()">Immediately Notify</button>
+      <button type="button" onclick="sendNotification('interval')">Notify Randomly Staggered Intervals</button>
       <input type="text" id="which_pwa" name="which_pwa" value="0" />
     </div>
     <script type="text/javascript">
@@ -46,7 +46,12 @@
         });
       }
 
-      function sendNotification() {
+      function sendNotification(type) {
+        let immediate = true;
+        if (type && type === 'interval') {
+          immediate = false;
+        }
+
         console.log('sendNotifications invoked');
 
         const pwas_elem = document.getElementById('which_pwa');
@@ -70,35 +75,19 @@
           return;
         }
 
+        let timeout = 0;
+
         pwas.forEach(pwa_num => {
-          console.log('setting cookie on pwa:', pwa_num)
-          const cookie = `NOTIFICATION_${pwa_num}=notification from main;domain=.supp.dog;path=/;`
-          document.cookie = cookie;
-          console.log('cookie set as:', cookie);
+          if (!immediate) {
+            timeout += parseInt(Math.random() * 10) * 1000;
+          }
+          console.log('setting cookie on pwa:', pwa_num, 'will set in', timeout, 'ms');
+          setTimeout(function () {
+            const cookie = `NOTIFICATION_${pwa_num}=notification from main;domain=.supp.dog;path=/;`
+            document.cookie = cookie;
+            console.log('cookie set as:', cookie);
+          }, timeout);
         });
-      }
-
-      function notifyMe() {
-        // Let's check if the browser supports notifications
-        if (!("Notification" in window)) {
-          alert("This browser does not support desktop notification");
-        }
-
-        // Let's check whether notification permissions have already been granted
-        else if (Notification.permission === "granted") {
-          // If it's okay let's create a notification
-          var notification = new Notification("Hi there!");
-        }
-
-        // Otherwise, we need to ask the user for permission
-        else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then(function (permission) {
-            // If the user accepts, let's create a notification
-            if (permission === "granted") {
-              var notification = new Notification("Hi there!");
-            }
-          });
-        }
       }
     </script>
   </body>

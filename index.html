@@ -31,7 +31,56 @@
       <h1 >Hello World</h1>
       <button type="button" onclick="notifyMe()">Send Notification</button>
       <button type="button" onclick="sendNotification()">Send Notification</button>
-      <iframe id="pwa2" src="https://pwa2.supp.dog/index.html"></iframe>
+      <input type="number" id="num_notifications" name="num_notifications" value="0" />
+      <iframe id="pwa2" style="display:none" src="https://pwa2.supp.dog/index.html"></iframe>
+      <iframe id="pwa3" style="display:none" src="https://pwa3.supp.dog/index.html"></iframe>
+      <iframe id="pwa4" style="display:none" src="https://pwa4.supp.dog/index.html"></iframe>
+      <iframe id="pwa5" style="display:none" src="https://pwa5.supp.dog/index.html"></iframe>
+      <iframe id="pwa6" style="display:none" src="https://pwa6.supp.dog/index.html"></iframe>
+      <iframe id="pwa7" style="display:none" src="https://pwa7.supp.dog/index.html"></iframe>
+      <iframe id="pwa8" style="display:none" src="https://pwa8.supp.dog/index.html"></iframe>
+      <iframe id="pwa9" style="display:none" src="https://pwa9.supp.dog/index.html"></iframe>
+      <iframe id="pwa10" style="display:none" src="https://pwa10.supp.dog/index.html"></iframe>
+      <iframe id="pwa11" style="display:none" src="https://pwa11.supp.dog/index.html"></iframe>
+      <iframe id="pwa12" style="display:none" src="https://pwa12.supp.dog/index.html"></iframe>
+      <iframe id="pwa13" style="display:none" src="https://pwa13.supp.dog/index.html"></iframe>
+      <iframe id="pwa14" style="display:none" src="https://pwa14.supp.dog/index.html"></iframe>
+      <iframe id="pwa15" style="display:none" src="https://pwa15.supp.dog/index.html"></iframe>
+      <iframe id="pwa16" style="display:none" src="https://pwa16.supp.dog/index.html"></iframe>
+      <iframe id="pwa17" style="display:none" src="https://pwa17.supp.dog/index.html"></iframe>
+      <iframe id="pwa18" style="display:none" src="https://pwa18.supp.dog/index.html"></iframe>
+      <iframe id="pwa19" style="display:none" src="https://pwa19.supp.dog/index.html"></iframe>
+      <iframe id="pwa20" style="display:none" src="https://pwa20.supp.dog/index.html"></iframe>
+      <iframe id="pwa21" style="display:none" src="https://pwa21.supp.dog/index.html"></iframe>
+      <iframe id="pwa22" style="display:none" src="https://pwa22.supp.dog/index.html"></iframe>
+      <iframe id="pwa23" style="display:none" src="https://pwa23.supp.dog/index.html"></iframe>
+      <iframe id="pwa24" style="display:none" src="https://pwa24.supp.dog/index.html"></iframe>
+      <iframe id="pwa25" style="display:none" src="https://pwa25.supp.dog/index.html"></iframe>
+      <iframe id="pwa26" style="display:none" src="https://pwa26.supp.dog/index.html"></iframe>
+      <iframe id="pwa27" style="display:none" src="https://pwa27.supp.dog/index.html"></iframe>
+      <iframe id="pwa28" style="display:none" src="https://pwa28.supp.dog/index.html"></iframe>
+      <iframe id="pwa29" style="display:none" src="https://pwa29.supp.dog/index.html"></iframe>
+      <iframe id="pwa30" style="display:none" src="https://pwa30.supp.dog/index.html"></iframe>
+      <iframe id="pwa31" style="display:none" src="https://pwa31.supp.dog/index.html"></iframe>
+      <iframe id="pwa32" style="display:none" src="https://pwa32.supp.dog/index.html"></iframe>
+      <iframe id="pwa33" style="display:none" src="https://pwa33.supp.dog/index.html"></iframe>
+      <iframe id="pwa34" style="display:none" src="https://pwa34.supp.dog/index.html"></iframe>
+      <iframe id="pwa35" style="display:none" src="https://pwa35.supp.dog/index.html"></iframe>
+      <iframe id="pwa36" style="display:none" src="https://pwa36.supp.dog/index.html"></iframe>
+      <iframe id="pwa37" style="display:none" src="https://pwa37.supp.dog/index.html"></iframe>
+      <iframe id="pwa38" style="display:none" src="https://pwa38.supp.dog/index.html"></iframe>
+      <iframe id="pwa39" style="display:none" src="https://pwa39.supp.dog/index.html"></iframe>
+      <iframe id="pwa40" style="display:none" src="https://pwa40.supp.dog/index.html"></iframe>
+      <iframe id="pwa41" style="display:none" src="https://pwa41.supp.dog/index.html"></iframe>
+      <iframe id="pwa42" style="display:none" src="https://pwa42.supp.dog/index.html"></iframe>
+      <iframe id="pwa43" style="display:none" src="https://pwa43.supp.dog/index.html"></iframe>
+      <iframe id="pwa44" style="display:none" src="https://pwa44.supp.dog/index.html"></iframe>
+      <iframe id="pwa45" style="display:none" src="https://pwa45.supp.dog/index.html"></iframe>
+      <iframe id="pwa46" style="display:none" src="https://pwa46.supp.dog/index.html"></iframe>
+      <iframe id="pwa47" style="display:none" src="https://pwa47.supp.dog/index.html"></iframe>
+      <iframe id="pwa48" style="display:none" src="https://pwa48.supp.dog/index.html"></iframe>
+      <iframe id="pwa49" style="display:none" src="https://pwa49.supp.dog/index.html"></iframe>
+      <iframe id="pwa50" style="display:none" src="https://pwa50.supp.dog/index.html"></iframe>
     </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
@@ -47,11 +96,21 @@
       }
 
       function sendNotification() {
-        var ORIGIN = "https://pwa2.supp.dog/";
-        var win = document.getElementById("pwa2").contentWindow;
-        
-        //use JSON.stringify() to send text...
-        win.postMessage(JSON.stringify({ 'newMessage': 'message' }), ORIGIN);
+        var numMessage = document.getElementById("num_notifications");
+        let messages = 0;
+        if (numMessage && numMessage.value) {
+          messages = parseInt(numMessage.value);
+        } else {
+          return;
+        }
+
+        var iframes = [...document.querySelectorAll('iframe')].sort(() => Math.random() - Math.random()).slice(0, messages);
+
+        iframes.forEach(iframe => {
+          var win = iframe.contentWindow;
+
+          win.postMessage(JSON.stringify("sending random messages"));
+        })
       }
 
       function notifyMe() {

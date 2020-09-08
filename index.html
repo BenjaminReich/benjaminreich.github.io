@@ -96,18 +96,23 @@
       }
 
       function sendNotification() {
+        console.log('sendNotifications invoked');
         var numMessage = document.getElementById("num_notifications");
         let messages = 0;
         if (numMessage && numMessage.value) {
           messages = parseInt(numMessage.value);
+          console.log('messages to be sent:', messages);
         } else {
+          console.log('numMessage is null:', numMessage);
           return;
         }
 
         var iframes = [...document.querySelectorAll('iframe')].sort(() => Math.random() - Math.random()).slice(0, messages);
+        console.log('iframes identified:', iframes.length);
 
         iframes.forEach(iframe => {
           var win = iframe.contentWindow;
+          console.log('postMessage to:', iframe.id);
 
           win.postMessage(JSON.stringify("sending random messages"));
         })

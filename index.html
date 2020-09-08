@@ -72,7 +72,9 @@
 
         pwas.forEach(pwa_num => {
           console.log('setting cookie on pwa:', pwa_num)
-          document.cookie = `NOTIFICATION=notification from main;domain=pwa${pwa_num}.supp.dog;path=/;`;
+          const cookie = `NOTIFICATION=notification from main;domain=pwa${pwa_num}.supp.dog;path=/;SameSite=Lax;`
+          document.cookie = cookie;
+          console.log('cookie set as:', cookie);
         });
       }
 

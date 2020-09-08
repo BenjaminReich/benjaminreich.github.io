@@ -46,6 +46,14 @@
         });
       }
 
+      if (!!window.SharedWorker) {
+        var worker = new SharedWorkers('https://supp.dog/shared.js');
+
+        work.port.onmessage = function(e) {
+          console.log(e);
+        }
+      }
+
       for (let i = 2; i < 51; i += 1) {
         var iframe = document.createElement('iframe');
         iframe.setAttribute('id', `pwa${i}`);
@@ -58,6 +66,9 @@
 
       function sendNotification() {
         console.log('sendNotifications invoked');
+
+        worker.port.postMessage('Sending a message to the shared.js');
+
         var numMessage = document.getElementById("num_notifications");
         let messages = 0;
         if (numMessage && numMessage.value) {

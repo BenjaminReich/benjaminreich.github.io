@@ -46,15 +46,15 @@
         });
       }
 
-      for (let i = 2; i < 51; i += 1) {
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('id', `pwa${i}`);
-        iframe.setAttribute('style', 'display:none');
+      // for (let i = 2; i < 51; i += 1) {
+      //   var iframe = document.createElement('iframe');
+      //   iframe.setAttribute('id', `pwa${i}`);
+      //   iframe.setAttribute('style', 'display:none');
         
-        var container = document.getElementById('container');
-        container.appendChild(iframe);
-        iframe.setAttribute('src', `https://pwa${i}.supp.dog/index.html?id=${Date.now()}`);
-      }
+      //   var container = document.getElementById('container');
+      //   container.appendChild(iframe);
+      //   iframe.setAttribute('src', `https://pwa${i}.supp.dog/index.html?id=${Date.now()}`);
+      // }
 
       function sendNotification() {
         console.log('sendNotifications invoked');

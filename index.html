@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.webmanifest">
-    <title>My hello world page</title>
+    <title>Notification Test Setup</title>
     <style type="text/css">
     body {
       background-color: #FF9800;
       color: black;
     }
-    .vertical-container {
+    .vertical-alignment {
       height: 300px;
+      text-align: center;
       display: -webkit-flex;
       display:         flex;
       -webkit-align-items: center;
@@ -20,13 +21,16 @@
       -webkit-justify-content: center;
               justify-content: center;
     }
-    h1.vertical-container {
+    h1.vertical-alignment {
       font-size: 275%;
     }
     </style>
   </head>
   <body>
-    <h1 class="vertical-container">Hello World</h1>
+    <div class="vertical-alignment">
+      <h1 >Hello World</h1>
+      <button type="button" onclick="notifyMe()">Send Notification</button>
+    </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -38,6 +42,29 @@
             console.log('ServiceWorker registration failed: ', err);
           });
         });
+      }
+
+      function notifyMe() {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+          alert("This browser does not support desktop notification");
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+          // If it's okay let's create a notification
+          var notification = new Notification("Hi there!");
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(function (permission) {
+            // If the user accepts, let's create a notification
+            if (permission === "granted") {
+              var notification = new Notification("Hi there!");
+            }
+          });
+        }
       }
     </script>
   </body>

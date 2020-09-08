@@ -24,17 +24,17 @@ for i in $(seq $START $END); do
   \"background_color\": \"#ffffff\",
   \"icons\": [
       {
-          \"src\": \"/icon.jpg\",
+          \"src\": \"icon.jpg\",
           \"sizes\": \"240x240\",
           \"type\": \"image/jpg\"
       },
       {
-          \"src\": \"/icon-144.png\",
+          \"src\": \"icon-144.png\",
           \"sizes\": \"144x144\",
           \"type\": \"image/png\"
       },
       {
-        \"src\": \"/icon-512.png\",
+        \"src\": \"icon-512.png\",
         \"sizes\": \"512x512\",
         \"type\": \"image/png\"
     }

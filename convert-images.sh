@@ -4,7 +4,7 @@ CURRENT_DIR=$(pwd)
 ORIGINAL_DIR="$CURRENT_DIR/pwa1"
 
 START=2
-END=50
+END=2
 for i in $(seq $START $END); do
   PWA_DIR="$CURRENT_DIR/pwa$i"
   mkdir "$PWA_DIR"
@@ -14,6 +14,36 @@ for i in $(seq $START $END); do
   convert icon-512_original.png -background none -pointsize 500 -gravity Center -fill white -annotate 0 "$i" icon-512.png
   convert icon-144_original.png -background none -pointsize 100 -gravity Center -fill white -annotate 0 "$i" icon-144.png
   convert icon_original.jpg -background none -pointsize 250 -gravity Center -fill white -annotate 0 "$i" icon.jpg
+
+  echo """{
+  \"name\": \"Ben Test PWA\",
+  \"short_name\": \"Ben Test PWA\",
+  \"start_url\": \"https://benjaminreich.github.io/pwa${i}\",
+  \"display\": \"standalone\",
+  \"theme_color\": \"#ffffff\",
+  \"background_color\": \"#ffffff\",
+  \"icons\": [
+      {
+          \"src\": \"/icon.jpg\",
+          \"sizes\": \"240x240\",
+          \"type\": \"image/jpg\"
+      },
+      {
+          \"src\": \"/icon-144.png\",
+          \"sizes\": \"144x144\",
+          \"type\": \"image/png\"
+      },
+      {
+        \"src\": \"/icon-512.png\",
+        \"sizes\": \"512x512\",
+        \"type\": \"image/png\"
+    }
+  ],
+  \"url\": \"https://benjaminreich.github.io/pwa${i}\",
+  \"lang\": \"\",
+  \"screenshots\": [],
+  \"orientation\": \"portrait\"
+}""" > manifest.webmanifest
 done
 
 

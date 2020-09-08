@@ -1,3 +1,0 @@
-# benjaminreich.github.io
-
-testing

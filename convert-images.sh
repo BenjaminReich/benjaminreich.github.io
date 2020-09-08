@@ -15,14 +15,18 @@ for i in $(seq $START $END); do
   convert icon-144_original.png -background none -pointsize 100 -gravity Center -fill white -annotate 0 "$i" icon-144.png
   convert icon_original.jpg -background none -pointsize 250 -gravity Center -fill white -annotate 0 "$i" icon.jpg
 
-  sed '1s/^/var CACHE_NAME = "pwa$i";\n/' "$PWA_DIR/worker.js" > "$PWA_DIR/worker2.js"
+  sed "s/var CACHE_NAME = \"pwa1\";/var CACHE_NAME = \"pwa$i\";/g" "$PWA_DIR/worker.js" > "$PWA_DIR/worker2.js"
   rm "$PWA_DIR/worker.js"
   mv "$PWA_DIR/worker2.js" "$PWA_DIR/worker.js"
+
+  sed "s/\/pwa1\/worker.js/\/pwa$i\/worker.js/g" "$PWA_DIR/index.html" > "$PWA_DIR/index2.html"
+  rm "$PWA_DIR/index.html"
+  mv "$PWA_DIR/index2.html" "$PWA_DIR/index.html"
 
   echo """{
   \"name\": \"Ben Test PWA ${i}\",
   \"short_name\": \"Ben Test PWA ${i}\",
-  \"start_url\": \"https://benjaminreich.github.io/pwa${i}\",
+  \"start_url\": \"https://benjaminreich.github.io/pwa${i}/\",
   \"display\": \"standalone\",
   \"theme_color\": \"#ffffff\",
   \"background_color\": \"#ffffff\",
@@ -43,18 +47,10 @@ for i in $(seq $START $END); do
         \"type\": \"image/png\"
     }
   ],
-  \"url\": \"https://benjaminreich.github.io/pwa${i}\",
+  \"url\": \"https://benjaminreich.github.io/pwa${i}/\",
   \"lang\": \"\",
   \"scope\": \"/pwa${i}/\",
   \"screenshots\": [],
   \"orientation\": \"portrait\"
-}""" > manifest.webmanifest
+}""" > "$PWA_DIR/manifest.webmanifest"
 done
-
-
-# for x in pwa*; do
-#   num=$(echo "$x" | sed -nr 's/.*([0-9]+)$/\1/p');
-#   cd "$CURRENT_DIR/$x"
-  
-#   convert icon-512.png -background none -pointsize 550 -gravity Center -fill white -annotate 0 '1' icon-512_text.png
-# done

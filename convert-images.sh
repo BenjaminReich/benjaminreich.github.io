@@ -41,6 +41,7 @@ for i in $(seq $START $END); do
   ],
   \"url\": \"https://benjaminreich.github.io/pwa${i}\",
   \"lang\": \"\",
+  \"scope\": \"/pwa${i}/\",
   \"screenshots\": [],
   \"orientation\": \"portrait\"
 }""" > manifest.webmanifest

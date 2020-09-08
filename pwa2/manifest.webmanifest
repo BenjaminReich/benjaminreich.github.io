@@ -24,6 +24,7 @@
   ],
   "url": "https://benjaminreich.github.io/pwa2",
   "lang": "",
+  "scope": "/pwa2/",
   "screenshots": [],
   "orientation": "portrait"
 }

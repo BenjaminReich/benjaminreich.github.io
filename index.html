@@ -31,7 +31,7 @@
       <h1 >Hello World</h1>
       <button type="button" onclick="notifyMe()">Send Notification</button>
       <button type="button" onclick="sendNotification()">Send Notification</button>
-      <input type="number" id="num_notifications" name="num_notifications" value="0" />
+      <input type="text" id="which_pwa" name="which_pwa" value="0" />
     </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
@@ -46,40 +46,34 @@
         });
       }
 
-      // for (let i = 2; i < 51; i += 1) {
-      //   var iframe = document.createElement('iframe');
-      //   iframe.setAttribute('id', `pwa${i}`);
-      //   iframe.setAttribute('style', 'display:none');
-        
-      //   var container = document.getElementById('container');
-      //   container.appendChild(iframe);
-      //   iframe.setAttribute('src', `https://pwa${i}.supp.dog/index.html?id=${Date.now()}`);
-      // }
-
       function sendNotification() {
         console.log('sendNotifications invoked');
 
-        document.cookie = "NOTIFICATION=test notification;domain=.supp.dog;path=/;";
+        const pwas_elem = document.getElementById('which_pwa');
 
-        var numMessage = document.getElementById("num_notifications");
-        let messages = 0;
-        if (numMessage && numMessage.value) {
-          messages = parseInt(numMessage.value);
-          console.log('messages to be sent:', messages);
-        } else {
-          console.log('numMessage is null:', numMessage);
+        if (!pwas_elem || !pwas_elem.value) {
+          console.log('no pwas identified');
+          return;
+        } 
+
+        const pwas = pwas_elem.value.split(',');
+
+        if (pwas.some(x => {
+          try {
+            parseInt(x);
+          } catch(e) {
+            return true;
+          }
+          return false;
+        })) {
+          console.log('not all elements are integers');
           return;
         }
 
-        var iframes = [...document.querySelectorAll('iframe')].sort(() => Math.random() - Math.random()).slice(0, messages);
-        console.log('iframes identified:', iframes.length);
-
-        iframes.forEach(iframe => {
-          var win = iframe.contentWindow;
-          console.log('postMessage to:', iframe.id);
-
-          win.postMessage(JSON.stringify("sending random messages"));
-        })
+        pwas.forEach(pwa_num => {
+          console.log('setting cookie on pwa:', pwa_num)
+          document.cookie = `NOTIFICATION=notification from main;domain=pwa${pwa_num}.supp.dog;path=/;`;
+        });
       }
 
       function notifyMe() {

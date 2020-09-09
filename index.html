@@ -8,30 +8,32 @@
     <title>Notification Test Setup</title>
     <style type="text/css">
     body {
-      background-color: #FF9800;
+      background-color: #FFFFFF;
       color: black;
-    }
-    .vertical-alignment {
-      height: 300px;
       text-align: center;
-      display: -webkit-flex;
-      display:         flex;
-      -webkit-align-items: center;
-              align-items: center;
-      -webkit-justify-content: center;
-              justify-content: center;
     }
-    h1.vertical-alignment {
-      font-size: 275%;
+    #container {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .box {
+      margin: 20px;
     }
     </style>
   </head>
   <body>
-    <div class="vertical-alignment" id="container">
-      <p>Enter a comma separated list of the PWA numbers you wish to notify (i.e. 2,5,6,7)</p>
+    <div id="container">
+      <div class="box">
+        Enter a comma separated list of the PWA numbers you wish to notify (i.e. 2,5,6,7)<br>
+        <input type="text" id="which_pwa" name="which_pwa" value="0" />
+      </div>
+      <div class="box">
+        How many milliseconds between notifications? Enter betweem 0 and 10000<br>
+        <input type="text" id="interval_ms" name="interval_ms" value="1000" />
+      </div>
       <button type="button" onclick="sendNotification()">Immediately Notify</button>
       <button type="button" onclick="sendNotification('interval')">Notify Randomly Staggered Intervals</button>
-      <input type="text" id="which_pwa" name="which_pwa" value="0" />
     </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
@@ -76,10 +78,21 @@
         }
 
         let timeout = 0;
+        let interval = 1000;
+
+        const interval_elem = document.getElementById('interval_ms');
+        if (interval_elem && interval_elem.value) {
+          try {
+            const intInterval = parseInt(interval_elem.value);
+            if (intInterval > 0 && intInterval < 10000) {
+              interval = intInterval;
+            }
+          } catch(e) {}
+        }
 
         pwas.forEach(pwa_num => {
           if (!immediate) {
-            timeout += parseInt(Math.random() * 10) * 1000;
+            timeout += interval;
           }
           console.log('setting cookie on pwa:', pwa_num, 'will set in', timeout, 'ms');
           setTimeout(function () {

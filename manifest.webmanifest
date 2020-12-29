@@ -1,7 +1,7 @@
 {
-  "name": "Ben Test PWA 1",
-  "short_name": "Ben Test PWA 1",
-  "start_url": "https://pwa1.supp.dog/",
+  "name": "Web Share Target PWA",
+  "short_name": "Web Share Target PWA",
+  "start_url": "https://benjaminreich.github.io/",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
@@ -22,7 +22,16 @@
         "type": "image/png"
     }
   ],
-  "url": "https://pwa1.supp.dog/",
+  "share_target": {
+    "action": "/text-share-target/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "url": "https://benjaminreich.github.io/",
   "lang": "",
   "scope": "/",
   "screenshots": [],

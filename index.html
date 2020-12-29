@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.webmanifest">
-    <title>Notification Test Setup</title>
+    <title>Web Share Target PWA</title>
     <style type="text/css">
     body {
       background-color: #FFFFFF;
@@ -25,16 +25,8 @@
   <body>
     <div id="container">
       <div class="box">
-        Enter a comma separated list of the PWA numbers you wish to notify (i.e. 2,5,6,7)<br>
-        <input type="text" id="which_pwa" name="which_pwa" value="0" />
-        <button type="button" onclick="populateAll()">All</button>
+        Test Box Container
       </div>
-      <div class="box">
-        How many milliseconds between notifications? Enter betweem 250 and 10000<br>
-        <input type="text" id="interval_ms" name="interval_ms" value="1000" />
-      </div>
-      <button type="button" onclick="sendNotification()">Immediately Notify</button>
-      <button type="button" onclick="sendNotification('interval')">Notify at Selected Intervals</button>
     </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
@@ -49,66 +41,13 @@
         });
       }
 
-      function populateAll() {
-        const inputBox = document.getElementById('which_pwa');
-
-        inputBox.value = '2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50';
-      }
-
-      function sendNotification(type) {
-        let immediate = true;
-        if (type && type === 'interval') {
-          immediate = false;
-        }
-
-        console.log('sendNotifications invoked');
-
-        const pwas_elem = document.getElementById('which_pwa');
-
-        if (!pwas_elem || !pwas_elem.value) {
-          console.log('no pwas identified');
-          return;
-        } 
-
-        const pwas = pwas_elem.value.split(',');
-
-        if (pwas.some(x => {
-          try {
-            parseInt(x);
-          } catch(e) {
-            return true;
-          }
-          return false;
-        })) {
-          console.log('not all elements are integers');
-          return;
-        }
-
-        let timeout = 0;
-        let interval = 1000;
-
-        const interval_elem = document.getElementById('interval_ms');
-        if (interval_elem && interval_elem.value) {
-          try {
-            const intInterval = parseInt(interval_elem.value);
-            if (intInterval > 0 && intInterval < 10000) {
-              interval = intInterval;
-            }
-          } catch(e) {}
-        }
-
-        pwas.forEach(pwa_num => {
-          if (!immediate) {
-            timeout += interval;
-          }
-          console.log('setting cookie on pwa:', pwa_num, 'will set in', timeout, 'ms');
-          setTimeout(function () {
-            const cookie = `NOTIFICATION_${pwa_num}=notification from main;domain=.supp.dog;path=/;`
-            document.cookie = cookie;
-            console.log('cookie set as:', cookie);
-          }, timeout);
-        });
-      }
+      window.addEventListener('DOMContentLoaded', () => {
+        const parsedUrl = new URL(window.location);
+        // searchParams.get() will properly handle decoding the values.
+        console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
+        console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
+        console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
+      });
     </script>
   </body>
 </html>

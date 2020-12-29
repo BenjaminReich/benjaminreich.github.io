@@ -1,6 +1,6 @@
 {
-  "name": "Web Share Target PWA",
-  "short_name": "Web Share Target PWA",
+  "name": "Web Share Text Target PWA",
+  "short_name": "Web Share Text Target PWA",
   "start_url": "https://benjaminreich.github.io/",
   "display": "standalone",
   "theme_color": "#ffffff",

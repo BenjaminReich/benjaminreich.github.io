@@ -25,7 +25,6 @@
   "share_target": {
     "action": "/files-share-target",
     "method": "GET",
-    "enctype": "multipart/form-data",
     "params": {
       "title": "name",
       "text": "description",

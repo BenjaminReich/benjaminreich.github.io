@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest_text.webmanifest">
-    <title>Web Share Target PWA</title>
+    <title>initiate sharing...</title>
     <style type="text/css">
     body {
       background-color: #FFFFFF;
@@ -25,46 +25,51 @@
   <body>
     <div id="container">
       <div class="box">
-        Test Box Container
-        <button type="button" name="share" id="shareText">Share</button>
+        Identifying text to share...<br>
+        <input type="text" name="shareText" id="shareText" /><br>
+        <button type="button" name="share" id="shareButton">Share</button>
       </div>
     </div>
     <script type="text/javascript">
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/worker.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-          });
+        window.addEventListener('load', async () => {
+          // Register service worker for installability criteria.
+          await navigator.serviceWorker.register('/worker.js');
 
           if ('share' in navigator) {
-            const shareButton = document.getElementById('shareText');
-            shareButton.addEventListener('click', ev => {
-              console.log(ev)
-              navigator.share({
-                title: 'web.dev',
-                text: 'Check out web.dev.',
-                url: 'https://web.dev/',
-              })
-                .then(() => console.log('Successful share'))
-                .catch((error) => console.log('Error sharing', error));
-            })
+            const shareButton = document.getElementById('shareButton');
+            const parsedUrl = new URL(window.location);
+            const shareText = parsedUrl.searchParams.get('shareText');
+            const shareTextInput = document.getElementById('shareText');
+            const text = parsedUrl.searchParams.get('text');
+
+            if (shareText) {
+              // Web Share API initiator.
+              shareTextInput.textContent = shareText;
+
+              shareButton.addEventListener('click', async () => {
+                try {
+                  await navigator.share({
+                    text: shareText,
+                  });
+
+                  document.title = 'shared successfully.';
+                } catch (e) {
+                  document.title = 'sharing failed.';
+                }
+              });
+            } else if (text) {
+              // Web Share Target API receiver.
+              shareTextInput.textContent = shareText;
+              document.title = 'share received:' + text;
+            } else {
+              document.title = 'no url params supplied.';
+            }
           } else {
-            console.log('share not found in navigator')
+            document.title = 'navigator.share undefined.';
           }
         });
       }
-
-      window.addEventListener('DOMContentLoaded', () => {
-        const parsedUrl = new URL(window.location);
-        // searchParams.get() will properly handle decoding the values.
-        console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
-        console.log('Text shared: ' + parsedUrl.searchParams.get('text'));
-        console.log('URL shared: ' + parsedUrl.searchParams.get('url'));
-      });
     </script>
   </body>
 </html>

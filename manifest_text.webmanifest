@@ -26,9 +26,7 @@
     "action": "/text-share-target/",
     "method": "GET",
     "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+      "text": "text"
     }
   },
   "url": "https://benjaminreich.github.io/",

@@ -22,7 +22,16 @@
         "type": "image/png"
     }
   ],
-  "url": "https://pwa1.supp.dog/",
+  "share_target": {
+    "action": "/text-share-target/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "url": "https://benjaminreich.github.io/",
   "lang": "",
   "scope": "/",
   "screenshots": [],
